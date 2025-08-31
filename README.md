@@ -18,29 +18,6 @@ A modern React application that helps developers generate professional git commi
 - **AI Services**: Puter-JS SDK
 - **Authentication**: Puter Auth
 
-## Project Structure
-
-```
-git-commit-writer/
-├── src/
-│   ├── components/           # React components
-│   │   ├── Navbar.jsx       # Navigation with auth
-│   │   ├── Footer.jsx       # Footer with tech stack
-│   │   └── TypewriterEffect.jsx  # CLI-style typewriter
-│   ├── assets/              # Static assets
-│   │   ├── puter-logo.png   # Official Puter logo
-│   │   └── react.svg        # React logo
-│   ├── App.jsx              # Main application
-│   ├── main.jsx             # Application entry point
-│   └── index.css            # Global styles
-├── public/                  # Public assets
-├── index.html               # HTML template
-├── package.json             # Dependencies and scripts
-├── tailwind.config.js       # Tailwind configuration
-├── postcss.config.js        # PostCSS configuration
-└── vite.config.js           # Vite configuration
-```
-
 ## Getting Started
 
 ### Prerequisites
