@@ -1,38 +1,37 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 // Layout Components
-import Navbar from './components/layout/Navbar.jsx'
-import Footer from './components/layout/Footer.jsx'
+import Navbar from "./components/layout/Navbar.jsx";
+import Footer from "./components/layout/Footer.jsx";
 
 // Feature Components
-import CommitInput from './components/features/commit-generator/CommitInput.jsx'
-import CommitResults from './components/features/commit-generator/CommitResults.jsx'
-import TypewriterEffect from './components/features/onboarding/TypewriterEffect.jsx'
+import CommitInput from "./components/features/commit-generator/CommitInput.jsx";
+import CommitResults from "./components/features/commit-generator/CommitResults.jsx";
+import TypewriterEffect from "./components/features/onboarding/TypewriterEffect.jsx";
 
 // UI Components
-import ErrorBoundary from './components/ui/ErrorBoundary.jsx'
+import ErrorBoundary from "./components/ui/ErrorBoundary.jsx";
 
 // Hooks
-import { useAuth } from './hooks/useAuth.js'
-import { useCommitGenerator } from './hooks/useCommitGenerator.js'
+import { useAuth } from "./hooks/useAuth.js";
+import { useCommitGenerator } from "./hooks/useCommitGenerator.js";
 
 // Constants
-import { APP_CONFIG } from './constants/app.js'
+import { APP_CONFIG } from "./constants/app.js";
 
 function App() {
-  const [showTypewriter, setShowTypewriter] = useState(true)
-  const [typewriterComplete, setTypewriterComplete] = useState(false)
+  const [showTypewriter, setShowTypewriter] = useState(true);
+  const [typewriterComplete, setTypewriterComplete] = useState(false);
 
   // Custom hooks for state management
-  const { isAuthenticated } = useAuth()
-  const { 
-    isGenerating, 
-    commitMessages, 
-    error, 
-    generateCommitMessages, 
-    clearResults,
-    hasResults 
-  } = useCommitGenerator()
+  const { isAuthenticated } = useAuth();
+  const {
+    isGenerating,
+    commitMessages,
+    error,
+    generateCommitMessages,
+    hasResults,
+  } = useCommitGenerator();
 
   // Typewriter content
   const typewriterTexts = [
@@ -48,36 +47,30 @@ function App() {
     "2. Click 'Generate Commit Messages'",
     "3. Copy your favorite suggestion",
     "",
-    "Let's create better commit messages together."
-  ]
+    "Let's create better commit messages together.",
+  ];
 
   // Event handlers
   const handleGenerate = (diffInput) => {
-    generateCommitMessages(diffInput, isAuthenticated)
-  }
-
-  const handleClearResults = () => {
-    clearResults()
-    setShowTypewriter(true)
-    setTypewriterComplete(false)
-  }
+    generateCommitMessages(diffInput, isAuthenticated);
+  };
 
   const handleTypewriterComplete = () => {
-    setTypewriterComplete(true)
-  }
+    setTypewriterComplete(true);
+  };
 
   // Hide typewriter when results are available
   useEffect(() => {
     if (hasResults) {
-      setShowTypewriter(false)
+      setShowTypewriter(false);
     }
-  }, [hasResults])
+  }, [hasResults]);
 
   return (
     <ErrorBoundary>
       <div className="h-screen flex flex-col bg-github-bg text-github-text">
         <Navbar />
-        
+
         <main className="flex-1 flex overflow-hidden">
           {/* Left Panel - Input */}
           <CommitInput
@@ -91,24 +84,21 @@ function App() {
           <div className="w-1/2 p-6">
             <div className="h-full">
               {showTypewriter && !hasResults ? (
-                <TypewriterEffect 
-                  texts={typewriterTexts} 
+                <TypewriterEffect
+                  texts={typewriterTexts}
                   onComplete={handleTypewriterComplete}
                 />
               ) : (
-                <CommitResults
-                  messages={commitMessages}
-                  onClear={handleClearResults}
-                />
+                <CommitResults messages={commitMessages} />
               )}
             </div>
           </div>
         </main>
-        
+
         <Footer />
       </div>
     </ErrorBoundary>
-  )
+  );
 }
 
-export default App
+export default App;
