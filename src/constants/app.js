@@ -29,7 +29,7 @@ export const VALIDATION_RULES = {
 
 export const UI_CONSTANTS = {
   commitMessageLimit: 72,
-  maxCommitMessages: 5,
+  maxCommitMessages: 8,
   breakpoints: {
     mobile: "768px",
     tablet: "1024px",

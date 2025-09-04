@@ -68,7 +68,7 @@ class PuterService {
   async generateCommitMessages(gitDiff, options = {}) {
     await this.initialize();
 
-    const { maxMessages = 5 } = options;
+    const { maxMessages = 8 } = options;
 
     const prompt = this.buildCommitPrompt(gitDiff, maxMessages);
 
