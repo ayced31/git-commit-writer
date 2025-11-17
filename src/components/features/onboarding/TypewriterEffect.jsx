@@ -55,23 +55,34 @@ const TypewriterEffect = ({ texts, onComplete, onDemoClick }) => {
   return (
     <div className="h-full flex flex-col justify-center">
       <div className="space-y-2 font-mono text-sm">
-        {texts.slice(0, currentTextIndex).map((text, index) => (
+        {/* Show all completed texts */}
+        {!isTyping && texts.map((text, index) => (
           <div key={index} className="text-github-text-secondary leading-relaxed">
-            {text}
+            {text || '\u00A0'}
           </div>
         ))}
 
-        {currentText && (
-          <div className="text-github-text-secondary leading-relaxed">
-            {currentText}
-            {showCursor && (
-              <span className="text-github-accent bg-github-accent text-github-bg ml-1 px-1">
-                _
-              </span>
-            )}
-          </div>
+        {/* Show typing in progress */}
+        {isTyping && (
+          <>
+            {texts.slice(0, currentTextIndex).map((text, index) => (
+              <div key={index} className="text-github-text-secondary leading-relaxed">
+                {text || '\u00A0'}
+              </div>
+            ))}
+
+            <div className="text-github-text-secondary leading-relaxed">
+              {currentText}
+              {showCursor && (
+                <span className="text-github-accent bg-github-accent text-github-bg ml-1 px-1">
+                  _
+                </span>
+              )}
+            </div>
+          </>
         )}
 
+        {/* Show demo button when typing is complete */}
         {!isTyping && (
           <div className="mt-8 flex justify-center">
             <button
