@@ -53,7 +53,7 @@ const TypewriterEffect = ({ texts, onComplete }) => {
   }, [currentCharIndex, currentTextIndex, texts, isTyping, onComplete])
 
   return (
-    <div className="h-full flex flex-col justify-center">
+    <div className="h-full flex flex-col justify-start pt-8">
       <div className="space-y-2 font-mono text-sm">
         {texts.slice(0, currentTextIndex).map((text, index) => (
           <div key={index} className="text-github-text-secondary leading-relaxed">

@@ -26,7 +26,7 @@ const TypewriterEffect = ({ texts, onComplete }) => {
         const timeout = setTimeout(() => {
           setCurrentText(currentFullText.slice(0, currentCharIndex + 1))
           setCurrentCharIndex(prev => prev + 1)
-        }, 15 + Math.random() * 10) // Fast CLI-style typing
+        }, 5 + Math.random() * 10) // Fast CLI-style typing
 
         return () => clearTimeout(timeout)
       } else {
@@ -52,7 +52,7 @@ const TypewriterEffect = ({ texts, onComplete }) => {
   }, [currentCharIndex, currentTextIndex, texts, isTyping, onComplete])
 
   return (
-    <div className="h-full flex flex-col justify-center">
+    <div className="h-full flex flex-col justify-start pt-8">
       <div className="space-y-2 font-mono text-sm">
         {texts.slice(0, currentTextIndex).map((text, index) => (
           <div key={index} className="text-github-text-secondary leading-relaxed">

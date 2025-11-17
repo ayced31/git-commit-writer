@@ -9,8 +9,8 @@ export const APP_CONFIG = {
 export const API_CONFIG = {
   maxInputSize: 50000,
   typingSpeed: {
-    min: 15,
-    max: 25,
+    min: 5,
+    max: 15,
   },
   animationDelays: {
     typewriter: 300,
