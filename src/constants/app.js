@@ -9,11 +9,11 @@ export const APP_CONFIG = {
 export const API_CONFIG = {
   maxInputSize: 50000,
   typingSpeed: {
-    min: 5,
-    max: 15,
+    min: 2,
+    max: 8,
   },
   animationDelays: {
-    typewriter: 300,
+    typewriter: 150,
     cursor: 400,
     authCheck: 1000,
   },
@@ -36,3 +36,20 @@ export const UI_CONSTANTS = {
     desktop: "1280px",
   },
 };
+
+export const SAMPLE_GIT_DIFF = `diff --git a/src/components/Button.jsx b/src/components/Button.jsx
+index 1234567..abcdefg 100644
+--- a/src/components/Button.jsx
++++ b/src/components/Button.jsx
+@@ -1,5 +1,8 @@
+ export function Button({ children, onClick }) {
+   return (
+-    <button onClick={onClick}>
++    <button
++      onClick={onClick}
++      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
++    >
+       {children}
+     </button>
+   )
+ }`;

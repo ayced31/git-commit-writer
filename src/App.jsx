@@ -17,11 +17,12 @@ import { useAuth } from "./hooks/useAuth.js";
 import { useCommitGenerator } from "./hooks/useCommitGenerator.js";
 
 // Constants
-import { APP_CONFIG } from "./constants/app.js";
+import { APP_CONFIG, SAMPLE_GIT_DIFF } from "./constants/app.js";
 
 function App() {
   const [showTypewriter, setShowTypewriter] = useState(true);
   const [typewriterComplete, setTypewriterComplete] = useState(false);
+  const [diffInput, setDiffInput] = useState("");
 
   // Custom hooks for state management
   const { isAuthenticated } = useAuth();
@@ -51,12 +52,17 @@ function App() {
   ];
 
   // Event handlers
-  const handleGenerate = (diffInput) => {
+  const handleGenerate = () => {
     generateCommitMessages(diffInput, isAuthenticated);
   };
 
   const handleTypewriterComplete = () => {
     setTypewriterComplete(true);
+  };
+
+  const handleDemoClick = () => {
+    setDiffInput(SAMPLE_GIT_DIFF);
+    setShowTypewriter(false);
   };
 
   // Hide typewriter when results are available
@@ -74,6 +80,8 @@ function App() {
         <main className="flex-1 flex overflow-hidden">
           {/* Left Panel - Input */}
           <CommitInput
+            diffInput={diffInput}
+            setDiffInput={setDiffInput}
             onGenerate={handleGenerate}
             isGenerating={isGenerating}
             isAuthenticated={isAuthenticated}
@@ -87,6 +95,7 @@ function App() {
                 <TypewriterEffect
                   texts={typewriterTexts}
                   onComplete={handleTypewriterComplete}
+                  onDemoClick={handleDemoClick}
                 />
               ) : (
                 <CommitResults messages={commitMessages} />

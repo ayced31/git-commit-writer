@@ -1,11 +1,7 @@
-import { useState } from 'react'
-
-const CommitInput = ({ onGenerate, isGenerating, isAuthenticated, error }) => {
-  const [diffInput, setDiffInput] = useState('')
-
+const CommitInput = ({ diffInput, setDiffInput, onGenerate, isGenerating, isAuthenticated, error }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
-    onGenerate(diffInput)
+    onGenerate()
   }
 
   const getButtonText = () => {
